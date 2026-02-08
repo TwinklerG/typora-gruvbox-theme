@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Create Release Package
+      run: |
+        mkdir -p release
+        cp src/gruvbox.css release/
+        cp src/gruvbox-dark.css release/
+        cp LICENSE release/
+        cp README.md release/
+        cd release
+        zip -r ../gruvbox-theme-${{ github.ref_name }}.zip .
+        cd ..
+        tar -czf gruvbox-theme-${{ github.ref_name }}.tar.gz -C release .
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          gruvbox-theme-${{ github.ref_name }}.zip
+          gruvbox-theme-${{ github.ref_name }}.tar.gz
+        generate_release_notes: true
+        name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
