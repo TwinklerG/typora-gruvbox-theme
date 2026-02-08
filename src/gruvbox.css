@@ -1,0 +1,1015 @@
+@include-when-export url(https://fonts.loli.net/css?family=Inconsolata:400,700&subset=latin-ext);
+
+/* Gruvbox Light Medium Theme for Typora */
+/* Based on https://github.com/morhetz/gruvbox */
+
+:root {
+  /* Gruvbox Light Medium Palette */
+  --bg: #fbf1c7;
+  --bg0_h: #f9f5d7;
+  --bg0_s: #f2e5bc;
+  --bg1: #ebdbb2;
+  --bg2: #d5c4a1;
+  --bg3: #bdae93;
+  --bg4: #a89984;
+  
+  --fg: #3c3836;
+  --fg0: #282828;
+  --fg1: #3c3836;
+  --fg2: #504945;
+  --fg3: #665c54;
+  --fg4: #7c6f64;
+  
+  --red: #cc241d;
+  --red-dim: #9d0006;
+  --green: #98971a;
+  --green-dim: #79740e;
+  --yellow: #d79921;
+  --yellow-dim: #b57614;
+  --blue: #458588;
+  --blue-dim: #076678;
+  --purple: #b16286;
+  --purple-dim: #8f3f71;
+  --aqua: #689d6a;
+  --aqua-dim: #427b58;
+  --orange: #d65d0e;
+  --orange-dim: #af3a03;
+  --gray: #928374;
+  
+  /* Typora Variables */
+  --bg-color: var(--bg);
+  --side-bar-bg-color: var(--bg0_s);
+  --active-file-text-color: var(--fg);
+  --text-color: var(--fg);
+  --window-border: 1px solid var(--bg2);
+  --active-file-bg-color: var(--bg2);
+  --control-text-color: var(--fg3);
+  --rawblock-edit-panel-bd: var(--bg1);
+}
+
+html, body {
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--bg);
+  background: var(--bg-color);
+  font-family: 'Inconsolata', monospace;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata Regular'), url(monospace/Inconsolata-Regular.ttf) format('truetype');
+}
+/* latin */
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Inconsolata Bold'), url(monospace/Inconsolata-Bold.ttf) format('truetype');
+}
+
+#write {
+  padding-left: 10ch;
+  padding-right: 10ch;
+}
+
+/**
+ * ---------------------
+ * Block Elements
+ */
+pre.md-meta-block {
+  font-family: monospace;
+  color: var(--fg3);
+  padding: 15px;
+  background: var(--bg1);
+  border: 1px var(--bg3) dashed;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[mdlike='h1'],
+[mdlike='h2'],
+[mdlike='h3'],
+[mdlike='h4'],
+[mdlike='h5'],
+[mdlike='h6'] {
+  font-weight: bold;
+  font-family: "PT Mono", monospace;
+  color: var(--fg0);
+}
+
+[mdlike='h1'] > .md-blockmeta,
+[mdlike='h2'] > .md-blockmeta,
+[mdlike='h3'] > .md-blockmeta,
+[mdlike='h4'] > .md-blockmeta,
+[mdlike='h5'] > .md-blockmeta,
+[mdlike='h6'] > .md-blockmeta {
+  color: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+h1,
+[mdlike='h1'] {
+  font-size: 2rem;
+  color: var(--orange-dim);
+}
+h1:before {
+  content: "# ";
+  color: var(--gray);
+}
+
+h2,
+[mdlike='h2'] {
+  font-size: 1.6rem;
+  color: var(--yellow-dim);
+}
+h2:before {
+  content: "## ";
+  color: var(--gray);
+}
+
+h3,
+[mdlike='h3'] {
+  font-size: 1.3rem;
+  color: var(--green-dim);
+}
+h3:before,
+h3.md-focus:before {
+  content: "### ";
+  color: var(--gray);
+}
+
+h4,
+h5,
+h6,
+[mdlike='h4'],
+[mdlike='h5'],
+[mdlike='h6'] {
+  color: var(--aqua-dim);
+}
+
+h4,
+[mdlike='h4'] {
+  font-size: 1.2rem;
+}
+h4:before,
+h4.md-focus:before {
+  content: "#### ";
+  color: var(--gray);
+}
+
+h5,
+[mdlike='h5'] {
+  font-size: 1.1rem;
+}
+h5:before,
+h5.md-focus:before {
+  content: "##### ";
+  color: var(--gray);
+}
+
+h6,
+[mdlike='h6'] {
+  font-size: 1rem;
+}
+h6:before,
+h6.md-focus:before {
+  content: "####### ";
+  color: var(--gray);
+}
+
+/** override the default style for focused headings */
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+  color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  position: inherit;
+  left: initial;
+  float: none;
+  top: initial;
+  font-size: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+  vertical-align: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+table {
+  line-height: 1.6rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid var(--bg3);
+}
+
+thead {
+  background-color: var(--bg1);
+  color: var(--fg0);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+td,
+th {
+  border-left: 1px solid var(--bg3);
+  border-width: 0 0 0 1px;
+  margin: 0;
+  overflow: visible;
+  padding: .5em 1em;
+}
+
+.md-toc-item {
+  position: relative;
+}
+
+.md-toc-inner {
+  width: 100%;
+  display: inline-block;
+}
+
+a.md-toc-inner {
+  color: var(--fg2);
+}
+a.md-toc-inner:hover {
+  color: var(--fg0);
+}
+
+.md-toc-h2 .md-toc-inner {
+  padding-left: 2em;
+  margin-left: 0;
+}
+
+.md-toc-h3 .md-toc-inner {
+  padding-left: 4em;
+  margin-left: 0;
+}
+
+.md-toc-h4 .md-toc-inner {
+  padding-left: 6em;
+  margin-left: 0;
+}
+
+.md-toc-h5 .md-toc-inner {
+  padding-left: 8em;
+  margin-left: 0;
+}
+
+.md-toc-h6 .md-toc-inner {
+  padding-left: 10em;
+  margin-left: 0;
+}
+
+#write > table {
+  width: 100%;
+}
+
+#write > h1,
+#write > [mdlike='h1'] {
+  margin-left: -2ch;
+}
+
+#write > h2,
+#write > [mdlike='h2'] {
+  margin-left: -3ch;
+}
+
+#write > h3,
+#write > [mdlike='h3'] {
+  margin-left: -4ch;
+}
+
+#write > h4,
+#write > [mdlike='h4'] {
+  margin-left: -5ch;
+}
+
+#write > h5,
+#write > [mdlike='h5'] {
+  margin-left: -6ch;
+}
+
+#write > h6,
+#write > [mdlike='h6'] {
+  margin-left: -7ch;
+}
+
+#write p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6,
+#write [mdlike='h1'],
+#write [mdlike='h2'],
+#write [mdlike='h3'],
+#write [mdlike='h4'],
+#write [mdlike='h5'],
+#write [mdlike='h6'] {
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+}
+
+@media (min-width: 800px) {
+  .pin-outline #write {
+    padding-left: 10ch;
+    padding-right: 6ch;
+  }
+
+  #write {
+    padding-left: 12ch;
+    padding-right: 12ch;
+  }
+  #write > h6,
+  #write > p [mdlike='h6'] {
+    margin-left: -8ch;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pin-outline #write {
+    padding-left: 10ch;
+    padding-right: 8ch;
+  }
+
+  .pin-outline #write > h1,
+  .pin-outline #write > h2,
+  .pin-outline #write > h3,
+  .pin-outline #write > h4,
+  .pin-outline #write > h5,
+  .pin-outline #write > h6,
+  .pin-outline #write > p [mdlike='h1'],
+  .pin-outline #write > p [mdlike='h2'],
+  .pin-outline #write > p [mdlike='h3'],
+  .pin-outline #write > p [mdlike='h4'],
+  .pin-outline #write > p [mdlike='h5'],
+  .pin-outline #write > p [mdlike='h6'] {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .pin-outline #write {
+    padding-left: 4ch;
+    padding-right: 4ch;
+  }
+
+  #write {
+    padding-left: 4ch;
+    padding-right: 4ch;
+  }
+  #write > h1,
+  #write > h2,
+  #write > h3,
+  #write > h4,
+  #write > h5,
+  #write > h6,
+  #write > p [mdlike='h1'],
+  #write > p [mdlike='h2'],
+  #write > p [mdlike='h3'],
+  #write > p [mdlike='h4'],
+  #write > p [mdlike='h5'],
+  #write > p [mdlike='h6'] {
+    margin-left: 0;
+  }
+}
+
+ul[cid] {
+  list-style-type: none;
+}
+
+ul[cid] li:before {
+  content: "*";
+  margin-left: -3ch;
+  position: absolute;
+  color: var(--green-dim);
+}
+
+ul[data-mark="-"] > li:before {
+  content: "-";
+}
+
+ul[data-mark="+"] > li:before {
+  content: "+";
+}
+
+.task-list > li:before {
+  margin-left: -6ch;
+}
+
+ol[cid] {
+  counter-reset: item;
+  list-style-type: none;
+}
+
+ol[cid] > li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  color: var(--yellow-dim);
+  margin-left: -2ch;
+  position: absolute;
+}
+
+.task-list-item input:before {
+  content: '[ ]';
+  display: inline-block;
+  margin-left: -2ch;
+  width: 4ch;
+  position: absolute;
+  top: -1px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: var(--bg);
+  color: var(--green-dim);
+}
+
+.task-list-item input:checked:before {
+  content: '[x]';
+  color: var(--green);
+}
+
+.task-list-item input:checked ~ * {
+  text-decoration: line-through;
+  color: var(--fg4);
+}
+
+blockquote {
+  background-color: var(--bg1);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 0 20px;
+  border-left: 8px solid var(--yellow);
+  color: var(--fg2);
+}
+
+hr {
+  position: relative;
+  height: 20px;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  border: 0;
+  margin-bottom: 20px;
+}
+
+hr:after {
+  content: "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  line-height: 20px;
+  width: 100%;
+  word-wrap: break-word;
+  color: var(--bg3);
+}
+
+/**
+ * Code Fences
+ */
+.md-fences:not(.md-fences-with-lineon) .cm-s-inner {
+  padding-left: 8px;
+}
+
+.CodeMirror.cm-s-inner {
+  padding-top: 8px;
+  border-radius: 3px;
+  padding-bottom: 16px;
+}
+
+.CodeMirror.cm-s-inner .CodeMirror-gutters {
+  background: var(--bg0_h);
+  color: var(--fg4);
+  border: none;
+}
+
+.CodeMirror .CodeMirror-guttermarker,
+.CodeMirror.cm-s-inner .CodeMirror-guttermarker,
+.CodeMirror .CodeMirror-guttermarker-subtle,
+.CodeMirror.cm-s-inner .CodeMirror-guttermarker-subtle,
+.CodeMirror .CodeMirror-linenumber,
+.CodeMirror.cm-s-inner .CodeMirror-linenumber {
+  color: var(--fg4);
+}
+
+.CodeMirror .CodeMirror-cursor,
+.CodeMirror.cm-s-inner .CodeMirror-cursor {
+  border-left: 1px solid var(--fg0);
+}
+
+.CodeMirror div.CodeMirror-selected,
+.CodeMirror.cm-s-inner div.CodeMirror-selected {
+  background: rgba(60, 56, 54, 0.15);
+}
+
+.CodeMirror .CodeMirror-focused div.CodeMirror-selected,
+.CodeMirror.cm-s-inner .CodeMirror-focused div.CodeMirror-selected {
+  background: rgba(60, 56, 54, 0.1);
+}
+
+.CodeMirror .CodeMirror-line::selection,
+.CodeMirror.cm-s-inner .CodeMirror-line::selection,
+.CodeMirror .CodeMirror-line > span::selection,
+.CodeMirror.cm-s-inner .CodeMirror-line > span::selection,
+.CodeMirror .CodeMirror-line > span > span::selection,
+.CodeMirror.cm-s-inner .CodeMirror-line > span > span::selection {
+  background: rgba(60, 56, 54, 0.1);
+}
+
+.CodeMirror .CodeMirror-line::-moz-selection,
+.CodeMirror.cm-s-inner .CodeMirror-line::-moz-selection,
+.CodeMirror .CodeMirror-line > span::-moz-selection,
+.CodeMirror.cm-s-inner .CodeMirror-line > span::-moz-selection,
+.CodeMirror .CodeMirror-line > span > span::-moz-selection,
+.CodeMirror.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
+  background: rgba(60, 56, 54, 0.1);
+}
+
+.CodeMirror .CodeMirror-activeline-background,
+.CodeMirror.cm-s-inner .CodeMirror-activeline-background {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Gruvbox Syntax Highlighting */
+.CodeMirror .cm-keyword,
+.CodeMirror.cm-s-inner .cm-keyword {
+  color: var(--red-dim);
+}
+
+.CodeMirror .cm-operator,
+.CodeMirror.cm-s-inner .cm-operator {
+  color: var(--fg);
+}
+
+.CodeMirror .cm-variable-2,
+.CodeMirror.cm-s-inner .cm-variable-2 {
+  color: var(--blue-dim);
+}
+
+.CodeMirror .cm-variable-3,
+.CodeMirror.cm-s-inner .cm-variable-3 {
+  color: var(--aqua-dim);
+}
+
+.CodeMirror .cm-builtin,
+.CodeMirror.cm-s-inner .cm-builtin {
+  color: var(--orange-dim);
+}
+
+.CodeMirror .cm-atom,
+.CodeMirror.cm-s-inner .cm-atom {
+  color: var(--purple-dim);
+}
+
+.CodeMirror .cm-number,
+.CodeMirror.cm-s-inner .cm-number {
+  color: var(--purple-dim);
+}
+
+.CodeMirror .cm-def,
+.CodeMirror.cm-s-inner .cm-def {
+  color: var(--blue-dim);
+}
+
+.CodeMirror .cm-string,
+.CodeMirror.cm-s-inner .cm-string {
+  color: var(--green-dim);
+}
+
+.CodeMirror .cm-string-2,
+.CodeMirror.cm-s-inner .cm-string-2 {
+  color: var(--aqua-dim);
+}
+
+.CodeMirror .cm-comment,
+.CodeMirror.cm-s-inner .cm-comment {
+  color: var(--gray);
+  font-style: italic;
+}
+
+.CodeMirror .cm-variable,
+.CodeMirror.cm-s-inner .cm-variable {
+  color: var(--fg);
+}
+
+.CodeMirror .cm-tag,
+.CodeMirror.cm-s-inner .cm-tag {
+  color: var(--red-dim);
+}
+
+.CodeMirror .cm-meta,
+.CodeMirror.cm-s-inner .cm-meta {
+  color: var(--orange);
+}
+
+.CodeMirror .cm-attribute,
+.CodeMirror.cm-s-inner .cm-attribute {
+  color: var(--aqua-dim);
+}
+
+.CodeMirror .cm-property,
+.CodeMirror.cm-s-inner .cm-property {
+  color: var(--fg);
+}
+
+.CodeMirror .cm-qualifier,
+.CodeMirror.cm-s-inner .cm-qualifier {
+  color: var(--yellow-dim);
+}
+
+.CodeMirror .cm-header,
+.CodeMirror.cm-s-inner .cm-header {
+  color: var(--blue-dim);
+}
+
+.CodeMirror .cm-error,
+.CodeMirror.cm-s-inner .cm-error {
+  color: var(--bg);
+  background-color: var(--red);
+}
+
+.CodeMirror .cm-link,
+.CodeMirror.cm-s-inner .cm-link {
+  color: var(--blue-dim);
+}
+
+.cm-s-inner {
+  background-color: var(--bg0_h);
+  color: var(--fg);
+}
+
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: var(--fg0) !important;
+}
+
+/**apply to code fences with plan text**/
+.md-fences {
+  background: var(--bg0_h);
+  color: var(--fg);
+  border: none;
+  overflow-x: visible;
+  white-space: pre;
+  border-radius: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.md-fences .CodeMirror.cm-s-inner:before {
+  content: "``` " attr(lang);
+  color: var(--fg4);
+}
+
+.md-fences .CodeMirror-scroll:after {
+  content: " ";
+}
+
+.md-fences .CodeMirror.cm-s-inner:after {
+  content: "```";
+  bottom: 0;
+  z-index: 99;
+  color: var(--fg4);
+}
+
+.md-fences .code-tooltip {
+  background-color: var(--bg0_h);
+  border: 1px solid var(--bg2);
+}
+
+/**
+ * Inline Elements
+ */
+code {
+  color: var(--orange-dim);
+  font-size: 0.9em;
+  background-color: var(--bg1);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+mark {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+strong {
+  color: var(--orange-dim);
+}
+
+em {
+  color: var(--purple-dim);
+}
+
+a {
+  color: var(--blue-dim);
+  text-decoration: none;
+}
+
+#write a:hover {
+  background-color: var(--blue);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+.md-meta,
+.md-content {
+  display: inline;
+}
+
+#typora-source .cm-header {
+  font-weight: bold;
+  font-family: "PT Mono", monospace;
+  color: var(--orange-dim);
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+#typora-source .cm-strong {
+  color: var(--orange-dim);
+}
+
+#typora-source .cm-em {
+  color: var(--purple-dim);
+}
+
+#typora-source .cm-link {
+  color: var(--blue-dim);
+}
+
+#typora-source .cm-string {
+  color: var(--green-dim);
+}
+
+#typora-source .cm-comment {
+  color: var(--gray);
+}
+
+/*
+ * Electron UI
+ */
+.outline-item:hover {
+  background-color: var(--bg2);
+  color: var(--fg0);
+  border-color: var(--bg2);
+}
+
+#write div.md-toc-tooltip {
+  background-color: var(--bg);
+}
+
+.btn,
+.btn .btn-default {
+  background: transparent;
+  color: var(--fg2);
+}
+
+.md-table-edit {
+  border-top: 1px solid var(--bg3);
+  background-color: var(--bg1);
+}
+
+.popover-title {
+  background: transparent;
+  color: var(--fg);
+}
+
+.context-menu {
+  border-radius: 0;
+}
+
+.context-menu.dropdown-menu > li > a:hover,
+.context-menu.dropdown-menu > li > a:focus {
+  background-color: var(--bg2);
+}
+
+.context-menu.dropdown-menu .divider {
+  background-color: var(--bg3);
+}
+
+.btn {
+  color: var(--fg);
+  letter-spacing: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: var(--bg1);
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid var(--bg2);
+}
+
+.btn:hover,
+.btn:focus,
+#footer-word-count:hover,
+.show-word-count #footer-word-count,
+.mouse-entered .footer-btn:hover {
+  color: var(--fg0);
+  border-color: var(--bg3);
+  background-color: var(--bg2);
+  outline: 0;
+}
+
+#outline-btn,
+#outline-btn:hover .ion-android-radio-button-on {
+  color: var(--fg0);
+}
+
+.btn.btn-primary {
+  color: var(--bg);
+  background-color: var(--blue-dim);
+  border-color: var(--blue-dim);
+}
+
+.btn.btn-primary:hover {
+  color: var(--bg);
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
+.mouse-entered #top-titlebar .toolbar-icon.btn:hover {
+  background-color: var(--bg2);
+  color: var(--fg0);
+}
+
+#md-searchpanel,
+#md-notification {
+  left: 0;
+}
+
+#md-searchpanel,
+#md-notification,
+.on-search-panel-open header,
+.modal-content,
+.popover,
+.dropdown-menu,
+.megamenu-menu,
+#outline-dropmenu,
+.typora-node #outline-dropmenu {
+  background-color: var(--bg1);
+  border: 1px solid var(--bg2);
+}
+
+.popover.bottom > .arrow:after {
+  border-bottom-color: var(--bg1);
+}
+
+#md-notification {
+  color: var(--fg);
+}
+
+.typora-node #outline-dropmenu {
+  border-right: 1px solid var(--bg2);
+}
+
+.info-panel-tab.active,
+.info-panel-tab.active:hover,
+.info-panel-tab:hover {
+  color: var(--fg0);
+}
+
+.menu-style-btn.active,
+.context-menu.dropdown-menu > .active > a,
+.context-menu.dropdown-menu > li > a:hover {
+  background-color: var(--bg2);
+  color: var(--fg0);
+}
+
+.form-control:focus {
+  color: var(--fg);
+}
+
+.input-group-addon {
+  padding-right: 16px;
+}
+
+input,
+input.form-control {
+  border-radius: 0;
+  background-color: var(--bg0_h);
+  border: 1px solid var(--bg3);
+  color: var(--fg);
+}
+
+input:focus {
+  border-color: var(--blue-dim);
+  outline: none;
+}
+
+.dropdown-menu .menu-item-container a.menu-style-btn:not(.menu-style-btn-2width) {
+  width: calc(25% - 2.5px);
+}
+
+#w-unpin {
+  color: var(--bg);
+}
+
+.dropdown-menu .divider {
+  background-color: var(--bg3);
+}
+
+#footer-word-count-info {
+  bottom: 28px;
+}
+
+#megamenu-content,
+.megamenu-opened header {
+  background-color: var(--bg);
+  background: var(--bg);
+}
+
+.md-expand.md-image > .md-meta {
+  background-color: var(--bg1);
+}
+
+@media (min-width: 1000px) {
+  .ty-footer {
+    background-color: inherit;
+  }
+}
+
+.md-image>.md-meta {
+  color: var(--purple-dim);
+  background-color: var(--bg1);
+}
+
+.md-expand.md-image > .md-meta {
+  color: var(--fg);
+}
+
+#typora-sidebar {
+  background: transparent;
+}
+
+.html-for-mac #typora-sidebar {
+  border-right: none;
+}
+
+content,
+titlebar {
+  background: var(--bg-color);
+}
+
+.sidebar-footer {
+  background: var(--bg);
+  border-top: 1px transparent solid;
+}
+
+.file-list-item,
+.sidebar-tabs {
+  border-top: none;
+  border-bottom: none;
+}
+
+.ty-side-sort-btn.active {
+  background: var(--bg-color);
+}
+
+.file-node-content:hover {
+  color: var(--fg0);
+}
+
+.md-task-list-item>input {
+  margin-top: calc(1rem - 12px);
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--bg3);
+  color: var(--fg0);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg4);
+}
